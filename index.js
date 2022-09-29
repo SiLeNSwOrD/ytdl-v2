@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 
 async function hello() {
     console.clear();
-    console.title('YTDL V2 by Androidy');
+    process.title = 'YTDL V2 - By: Androidy';
     fs.existsSync("Downloads") || fs.mkdirSync("Downloads");
     console.log('\033[34m =============================');
     console.log('\033[32m YTDL By Androidy#0001');

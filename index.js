@@ -35,7 +35,7 @@ async function main() {
             console.log(`Downloaded ${title}`);
             setTimeout(() => {
                 main();
-            }, 1000);
+            }, 3000);
         });
     });
 }

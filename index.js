@@ -28,10 +28,13 @@ async function main() {
         const info = await ytdl.getInfo(url);
         const title = info.videoDetails.title;
         const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
+
         console.log(`Downloading ${title}...`);
         const audio = ytdl(url, { format: format });
+        const video = ytdl(url, { quality: '18' });
         audio.pipe(fs.createWriteStream(`Downloads/${title}.mp3`));
-        audio.on('end', () => {
+        video.pipe(fs.createWriteStream(`Downloads/${title}.mp4`));
+        video.on('end', () => {
             console.log(`Downloaded ${title}`);
             setTimeout(() => {
                 main();

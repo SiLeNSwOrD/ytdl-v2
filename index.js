@@ -10,9 +10,10 @@ const rl = readline.createInterface({
 
 async function hello() {
     console.clear();
+    console.title('YTDL V2 by Androidy');
     fs.existsSync("Downloads") || fs.mkdirSync("Downloads");
     console.log('\033[34m =============================');
-    console.log('\033[32m Simple YTDL By Androidy#0001');
+    console.log('\033[32m YTDL By Androidy#0001');
     console.log('\033[32m Version: 2.0');
     console.log('\033[31m =============================');
     console.log('\033[0m')

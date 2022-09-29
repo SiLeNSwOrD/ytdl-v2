@@ -1,0 +1,20 @@
+{
+  "name": "ytdl-v2",
+  "version": "1.0.0",
+  "description": "youtube downloader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "androidy",
+  "license": "ISC",
+  "dependencies": {
+    "path": "^0.12.7",
+    "readline": "^1.3.0",
+    "ytdl-core": "^4.11.2"
+  }
+}

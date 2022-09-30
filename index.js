@@ -15,6 +15,8 @@ async function hello() {
     console.clear();
     process.title = 'YTDL V2 - By: Androidy';
     fs.existsSync(config.folder) || fs.mkdirSync(config.folder);
+    fs.existsSync(config.folder + '/video') || fs.mkdirSync(config.folder + '/video');
+    fs.existsSync(config.folder + '/audio') || fs.mkdirSync(config.folder + '/audio');
     console.log('\033[34m =============================');
     console.log('\033[32m YTDL By Androidy#0001');
     console.log('\033[32m Version: ', config.version);
@@ -36,8 +38,10 @@ async function main() {
         logger.info('Downloading: ' + title);
         const audio = ytdl(url, { format: format });
         const video = ytdl(url, { quality: '18' });
-        audio.pipe(fs.createWriteStream(`${config.folder}/${title}.mp3`));
-        video.pipe(fs.createWriteStream(`${config.folder}/${title}.mp4`));
+        const video_hd = ytdl(url, { quality: '137' });
+        audio.pipe(fs.createWriteStream(`${config.folder}/audio/${title}.mp3`));
+        video.pipe(fs.createWriteStream(`${config.folder}/video/${title}.mp4`));
+        video_hd.pipe(fs.createWriteStream(`${config.folder}/video/${title} HD.mp4`));
         video.on('end', () => {
             logger.info(`Downloaded ${title}`);
             setTimeout(() => {

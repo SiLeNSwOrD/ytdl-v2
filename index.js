@@ -4,6 +4,7 @@ const fs = require('fs');
 const readline = require('readline');
 
 const config = require('./config/config.json');
+const logger = require('./logger');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -25,23 +26,23 @@ async function main() {
     await hello();
     rl.question('Enter URL: ', async (url) => {
         if (!ytdl.validateURL(url)) {
-            console.log('Invalid URL');
+            logger.error('Invalid URL!');
             return main();
         }
         const info = await ytdl.getInfo(url);
         const title = info.videoDetails.title;
         const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
 
-        console.log(`Downloading ${title}...`);
+        logger.info('Downloading: ' + title);
         const audio = ytdl(url, { format: format });
         const video = ytdl(url, { quality: '18' });
         audio.pipe(fs.createWriteStream(`${config.folder}/${title}.mp3`));
         video.pipe(fs.createWriteStream(`${config.folder}/${title}.mp4`));
         video.on('end', () => {
-            console.log(`Downloaded ${title}`);
+            logger.info(`Downloaded ${title}`);
             setTimeout(() => {
                 main();
-            }, 3000);
+            }, 5000);
         });
     });
 }

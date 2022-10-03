@@ -38,10 +38,8 @@ async function main() {
         logger.info('Downloading: ' + title);
         const audio = ytdl(url, { format: format });
         const video = ytdl(url, { quality: '18' });
-        const video_hd = ytdl(url, { quality: '137' });
         audio.pipe(fs.createWriteStream(`${config.folder}/audio/${title}.mp3`));
         video.pipe(fs.createWriteStream(`${config.folder}/video/${title}.mp4`));
-        video_hd.pipe(fs.createWriteStream(`${config.folder}/video/${title} HD.mp4`));
         video.on('end', () => {
             logger.info(`Downloaded ${title}`);
             setTimeout(() => {

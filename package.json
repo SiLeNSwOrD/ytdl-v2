@@ -14,10 +14,9 @@
   "author": "androidy",
   "license": "ISC",
   "dependencies": {
-    "discord-rpc": "^4.0.1",
     "path": "^0.12.7",
     "readline": "^1.3.0",
-    "ytdl-core": "^4.11.2"
+    "ytdl-core": "^4.11.4"
   },
   "devDependencies": {
     "@angablue/exe": "^1.1.3"

@@ -36,8 +36,8 @@ async function main() {
         const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
 
         logger.info('Downloading: ' + title);
-        const audio = ytdl(url, { format: format });
-        const video = ytdl(url, { quality: '18' });
+        const audio = ytdl(url, {quality: 'highestaudio'});
+        const video = ytdl(url, {quality: 'highestvideo'});
         audio.pipe(fs.createWriteStream(`${config.folder}/audio/${title}.mp3`));
         video.pipe(fs.createWriteStream(`${config.folder}/video/${title}.mp4`));
         video.on('end', () => {
